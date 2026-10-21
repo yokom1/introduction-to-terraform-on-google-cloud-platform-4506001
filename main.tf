@@ -49,6 +49,7 @@ data "google_compute_image" "ubuntu" {
 resource "google_compute_instance" "blog" {
   name         = var.app_name
   machine_type = var.machine_type
+  tags = ["${var.network_name}-web]
 
   
   boot_disk {
@@ -63,4 +64,5 @@ resource "google_compute_instance" "blog" {
     }
   }  
 allow_stopping_for_update = true
+metadata_startup_script = "apt -y update; apt -y install nginx; echo ${var.app_name} > /var/www/html/index.html"
 }
