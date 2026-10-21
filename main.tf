@@ -10,13 +10,13 @@ resource "google_compute_subnetwork" "app"{
   network = google_compute_network.app.id
 }
 
-data "google_compute_image" "app" {
+data "google_compute_image" "ubuntu" {
   most_recent = true
   project     = var.image_project
   family      = var.image_family
 }
 
-resource "google_compute_instance" "web" {
+resource "google_compute_instance" "blog" {
   name         = var.app_name
   machine_type = var.machine_type
 
