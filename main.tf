@@ -21,8 +21,9 @@ module "app_network" {
       allow = [
         {
           protocol = "tcp""
-          ports    = ["80","443"]
+          ports = ["80","443"]
         }
+      ]
     }
 ]
 
