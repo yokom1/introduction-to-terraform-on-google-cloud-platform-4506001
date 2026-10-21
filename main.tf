@@ -1,31 +1,32 @@
 module "app_network" {
-  source  = "terraform-google-modules/network/google"
-  version = "18.3.1"
-  network_name = "${var.network_name}-network"
-  project_id = var.project_id
-  subnets = [
-    {
-      subnet_name = "${var.network_name}-subnet0"
-      subnet_ip = var.network_ip_range
-      subnet_region = var.region
-    }
-  ]
+    source  = "terraform-google-modules/network/google"
+    version = "18.3.1"
+    network_name = "${var.network_name}-network"
+    project_id = var.project_id
+    subnets = [
+      {
+        subnet_name = "${var.network_name}-subnet0"
+        subnet_ip = var.network_ip_range
+        subnet_region = var.region
+      }
+    ]
 
-  ingress_rules = [
-    {
-      name = "${var.network_name}-web"
-      description = "Inbound web"
-      source_ranges = ["0.0.0.0/0"]
-      target_tags = ["${var.network_name}-web"]
-      
-      allow = [
-        {
-          protocol = "tcp"
-          ports = ["80","443"]
-        }
-      ]
-    }
-]
+    ingress_rules = [
+      {
+        name = "${var.network_name}-web"
+        description = "Inbound web"
+        source_ranges = ["0.0.0.0/0"]
+        target_tags = ["${var.network_name}-web"]
+        
+        allow = [
+          {
+            protocol = "tcp"
+            ports = ["80","443"]
+          }
+        ]
+      }
+    ]
+}
 
 resource "google_compute_network" "app" {
   name = var.network_name
