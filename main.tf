@@ -27,12 +27,12 @@ module "app_network" {
     }
 ]
 
-resource "google_compute_network" "app"{
+resource "google_compute_network" "app" {
   name = var.network_name
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "app"{
+resource "google_compute_subnetwork" "app" {
   name = var.network_name
   ip_cidr_range = var.network_ip_range
   region = var.region
