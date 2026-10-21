@@ -31,7 +31,6 @@ resource "google_compute_instance" "blog" {
    access_config {
       # Leave empty for dynamic public IP
     }
-    allow_stopping_for_update = true
   }  
-
+allow_stopping_for_update = true
 }
